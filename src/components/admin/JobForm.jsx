@@ -145,6 +145,24 @@ export default function JobForm({ job, setJob, onSubmit, submitText }) {
             Add Tag
           </button>
         </div>
+        <div>
+          <label
+            htmlFor="jobUrl"
+            className="block text-sm font-medium text-gray-700"
+          >
+            Job URL
+          </label>
+          <input
+            type="url"
+            id="jobUrl"
+            name="jobUrl"
+            value={job.jobUrl}
+            onChange={handleInputChange}
+            required
+            placeholder="https://example.com"
+            className="mt-1 block w-full rounded-md border border-gray-300 shadow-sm bg-white text-black focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+          />
+        </div>
       </div>
       <button
         type="submit"

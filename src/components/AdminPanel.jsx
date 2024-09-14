@@ -48,24 +48,28 @@ export default function AdminPanel() {
 
   const handleAddJob = (e) => {
     e.preventDefault();
-    if (newJob.title.trim()) {
-      const addedJob = {
-        ...newJob,
-        id: jobPosts.length + 1,
-        applications: 0,
-        searches: 0,
-        views: 0,
-      };
-      setJobPosts([...jobPosts, addedJob]);
-      setNewJob({
-        title: "",
-        description: "",
-        salaryRange: "",
-        tags: [],
-        location: "",
-        workArrangement: "",
-      });
+    if (!newJob.title.trim()) {
+      alert("Title is required!");
+      return;
     }
+
+    const addedJob = {
+      ...newJob,
+      id: jobPosts.length + 1,
+      applications: 0,
+      searches: 0,
+      views: 0,
+    };
+    setJobPosts([...jobPosts, addedJob]);
+    setNewJob({
+      title: "",
+      description: "",
+      salaryRange: "",
+      tags: [],
+      location: "",
+      workArrangement: "",
+    });
+    alert("Job added successfully!");
   };
 
   const handleEditJob = (job) => {
@@ -88,7 +92,7 @@ export default function AdminPanel() {
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">
-            Job Portal Admin Dashboard
+            World Job Admin Dashboard
           </h1>
         </div>
       </header>

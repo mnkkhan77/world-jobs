@@ -6,6 +6,7 @@ function JobListControls({ viewMode, onViewModeToggle }) {
       <button
         onClick={onViewModeToggle}
         className="bg-gray-200 px-4 py-2 rounded-full hover:bg-gray-300 transition-colors duration-300"
+        aria-label={`Switch to ${viewMode === "grid" ? "list" : "grid"} view`}
       >
         {viewMode === "grid" ? "Switch to List View" : "Switch to Grid View"}
       </button>

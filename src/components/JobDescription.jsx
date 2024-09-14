@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 const JobDescription = ({ job, onClose }) => {
+  const navigate = useNavigate();
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +19,7 @@ const JobDescription = ({ job, onClose }) => {
   }, [onClose]);
 
   const handleApply = () => {
-    window.open(job.applicationUrl, "_blank");
+    navigate(`/apply/${job.id}`, { state: { job } });
   };
 
   return (

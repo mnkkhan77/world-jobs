@@ -29,6 +29,7 @@ function LoginForm({ onLogin, onClose }) {
             value={credentials.username}
             onChange={handleChange}
             placeholder="Username"
+            aria-label="Username"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />
@@ -38,6 +39,7 @@ function LoginForm({ onLogin, onClose }) {
             value={credentials.password}
             onChange={handleChange}
             placeholder="Password"
+            aria-label="Password"
             className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500"
             required
           />

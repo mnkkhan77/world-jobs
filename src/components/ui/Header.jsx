@@ -1,18 +1,24 @@
-// components/Header.jsx
-import React from "react";
-
-function Header({ isAdmin, onLoginClick }) {
+function Header({ isAdmin, onLoginClick, onLogout }) {
   return (
-    <header className="flex justify-between items-center mb-6">
-      <h1 className="text-3xl font-bold text-indigo-600">Job Portal</h1>
-      {!isAdmin && (
-        <button
-          onClick={onLoginClick}
-          className="bg-indigo-500 text-white px-4 py-2 rounded-full hover:bg-indigo-600 transition-colors duration-300"
-        >
-          Admin Login
-        </button>
-      )}
+    <header className="bg-indigo-600 text-white p-4 flex justify-between items-center">
+      <h1 className="text-2xl font-bold">Job Portal</h1>
+      <div>
+        {isAdmin ? (
+          <button
+            onClick={onLogout}
+            className="bg-red-500 px-4 py-2 rounded hover:bg-red-600 transition-colors duration-300"
+          >
+            Logout
+          </button>
+        ) : (
+          <button
+            onClick={onLoginClick}
+            className="bg-white text-indigo-600 px-4 py-2 rounded hover:bg-gray-200 transition-colors duration-300"
+          >
+            Admin Login
+          </button>
+        )}
+      </div>
     </header>
   );
 }

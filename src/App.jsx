@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import AdminPanel from "./components/AdminPanel";
 import JobDescription from "./components/JobDescription";
 import JobList from "./components/JobList";
@@ -8,6 +9,7 @@ import LoginForm from "./components/LoginForm";
 import Footer from "./components/ui/Footer";
 import Header from "./components/ui/Header";
 import { initialJobs } from "./data"; // Import job data
+import JobApplyPage from "./pages/JobApplyPage";
 
 function App() {
   const [jobs, setJobs] = useState(initialJobs);
@@ -74,37 +76,56 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
-      <Header isAdmin={isAdmin} onLoginClick={handleLoginClick} />
+    <Router>
+      <div className="min-h-screen bg-gray-100 p-6">
+        <Header isAdmin={isAdmin} onLoginClick={handleLoginClick} />
 
-      <JobSearch onSearch={handleSearch} onSort={handleSort} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <JobSearch onSearch={handleSearch} onSort={handleSort} />
 
-      {isAdmin && (
-        <div className="mb-6">
-          <AdminPanel onAddJob={handleAddJob} />
-        </div>
-      )}
+                {isAdmin && (
+                  <div className="mb-6">
+                    <AdminPanel onAddJob={handleAddJob} />
+                  </div>
+                )}
 
-      <JobListControls
-        viewMode={viewMode}
-        onViewModeToggle={handleViewModeToggle}
-      />
+                <JobListControls
+                  viewMode={viewMode}
+                  onViewModeToggle={handleViewModeToggle}
+                />
 
-      <JobList
-        jobs={searchResults}
-        viewMode={viewMode}
-        onJobClick={handleJobClick}
-      />
+                <JobList
+                  jobs={searchResults}
+                  viewMode={viewMode}
+                  onJobClick={handleJobClick}
+                />
 
-      {selectedJob && (
-        <JobDescription job={selectedJob} onClose={handleCloseJobDetail} />
-      )}
+                {selectedJob && (
+                  <JobDescription
+                    job={selectedJob}
+                    onClose={handleCloseJobDetail}
+                  />
+                )}
+              </>
+            }
+          />
+          <Route path="/apply/:id" element={<JobApplyPage />} />
+        </Routes>
 
-      {showLogin && (
-        <LoginForm onLogin={handleLogin} onClose={() => setShowLogin(false)} />
-      )}
-      <Footer />
-    </div>
+        {showLogin && (
+          <LoginForm
+            onLogin={handleLogin}
+            onClose={() => setShowLogin(false)}
+          />
+        )}
+
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
